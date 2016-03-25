@@ -13,8 +13,9 @@ by default server should start at http://127.0.0.1:8000
 **3. open url in browser window and switch to admin panel** 
 
 http://127.0.0.1:8000/admin/ 
-login - admin
-password - password3
+* login - admin
+* password - password3
+
 in "education/people" field you can find people list and their related education
 
 **4. ctrl+c**  stop server through terminal
