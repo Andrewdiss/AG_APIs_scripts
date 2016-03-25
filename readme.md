@@ -32,7 +32,7 @@ in [education] field you can see following script commands:
 
 to see help information and positional arguments 
 
-**7. python manage.py gmail login password **
+**7. python manage.py gmail login password**
 
 mail check may fail if your gmail account block unsafe connections
 
