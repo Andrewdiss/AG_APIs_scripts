@@ -1,0 +1,20 @@
+# ignore tilda files
+*~
+
+
+# ignore all files in listed dirs
+bin/
+include/
+lib/
+local/
+
+# all files in nested dir .idea/
+attract/**/.idea/
+
+# pip check files
+pip-selfcheck.json
+
+# Byte-compiled/optimized/DLL files
+__pycache__/
+*.py[cod]
+
