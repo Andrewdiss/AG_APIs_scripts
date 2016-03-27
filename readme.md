@@ -10,7 +10,7 @@
 
 Create virtual environment "env" in directory
 
-**4. .env/bin/activate**
+**4. . env/bin/activate**
 
 **5. pip install -r req.txt**
 
