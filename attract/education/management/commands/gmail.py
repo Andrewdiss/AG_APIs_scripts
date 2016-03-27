@@ -3,6 +3,7 @@ import email
 from imaplib import IMAP4_SSL
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
+from validate_email import validate_email
 
 
 class Command(BaseCommand):
@@ -14,8 +15,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         login, password = options['login'], options['password']
-        if '@' not in login:  # check if login is valid email address
-            raise CommandError('Login should contain "@" symbol')
+        if not validate_email(login):  # check if login is valid email address
+            raise CommandError('Email is not correct')
         else:
             mail = IMAP4_SSL(settings.GMAIL_IMAP)
             mail.login(login, password)

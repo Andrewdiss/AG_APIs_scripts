@@ -1,16 +1,24 @@
 ### This is deploy manual for attract app (test_task).
 
-it`s recomended to use new virtualenv folder to deploy this project 
-After "git clone url" you should use commands in following order
 
-**1. pip install -r req.txt**
 
-**2. python manage.py runserver**
+**1. git clone https://github.com/Andrewdiss/AttractGroup.git**
 
-use command within app fodler
+**2. cd AttractGroup**
+
+**3. virtualenv env**
+
+**4. .env/bin/activate**
+
+**5. pip install -r req.txt**
+
+**6. ./manage.py migrate**
+
+**7. ./manage.py runserver**
+
 by default server should start at http://127.0.0.1:8000
 
-**3. open url in browser window and switch to admin panel** 
+**8. open url in browser window and switch to admin panel** 
 
 http://127.0.0.1:8000/admin/ 
 * login - admin
@@ -20,9 +28,9 @@ in "education/people" field you can find people list and their related education
 
 **4. ctrl+c**  stop server through terminal
 
-**5. python manage.py**
+**5. ./manage.py**
 
-in [education] field you can see following script commands:
+in [education] field check following script commands:
 
 * edu_check
 * gmail
@@ -36,4 +44,4 @@ to see help information and positional arguments
 
 mail check may fail if your gmail account block unsafe connections
 
-you can remove restriction folowing [this](https://support.google.com/accounts/answer/6010255) instructions
+remove restriction folowing [this](https://support.google.com/accounts/answer/6010255) instructions
