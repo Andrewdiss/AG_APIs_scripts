@@ -38,12 +38,26 @@ in [education] field check following script commands:
 * gmail
 * weather
 
-**11) python manage.py weather -h**
+**11) python manage.py script -h**
 
 to see help information and positional arguments 
 
-**12) python manage.py gmail login password**
+**12) python manage.py edu_check all**
+
+lists all persons with no filter
+
+**13) python manage.py edu_check master**
+
+lists persons with master degree
+
+**14) python manage.py weather Odessa**
+
+return city name, country, temperature, wind speed etc.
+
+**15) python manage.py gmail login password**
 
 mail check may fail if your gmail account block unsafe connections
 
 remove restriction folowing [this](https://support.google.com/accounts/answer/6010255) instructions
+
+return last email information: subject, from, to, date  
