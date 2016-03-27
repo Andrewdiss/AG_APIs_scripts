@@ -17,20 +17,25 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Document',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
                 ('person_education', models.CharField(max_length=120)),
             ],
         ),
         migrations.CreateModel(
             name='People',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
                 ('person_name', models.CharField(max_length=120)),
             ],
         ),
         migrations.AddField(
             model_name='document',
             name='person_id',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='education.People'),
+            field=models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to='education.People'
+            ),
         ),
     ]

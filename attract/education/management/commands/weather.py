@@ -1,36 +1,47 @@
-import urllib2
 import json
+import urllib2
+from urlparse import urlsplit, parse_qs, urlunsplit
+from urllib import urlencode
 from django.core.management.base import BaseCommand
+from django.conf import settings
 
 
 class Command(BaseCommand):
-    help = """Helps to discover current weather data by city name,
-        takes "city_name" as argument"""
+    help = 'Helps to discover current weather data by city name'
 
     def add_arguments(self, parser):
         parser.add_argument('city_name', type=str,
-                            help='argument work better in Latin (ASCII) encoding')
+                            help='arguments should be Latin (ASCII) encoding')
 
     def handle(self, city_name, **options):
-        city = city_name.replace(" ", "%20")  # replace spaces for representation in url
-        api_key = "1c73822d0b56a00dec472f069e960a8d"
-        url = "http://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s" % (city, api_key)
-        json_obj = urllib2.urlopen(url)
+        # replace spaces for representation in url
+        city = city_name.replace(" ", "%20")
+
+        def set_query_url():
+            scheme, netlock, path, query, fragment = urlsplit(settings.API_URL)
+            query_param = parse_qs(query)
+            query_param['q'] = city
+            query_param['appid'] = settings.API_KEY
+            new_query = urlencode(query_param, doseq=True)
+            return urlunsplit((scheme, netlock, path,
+                               new_query, fragment))
+
+        json_obj = urllib2.urlopen(set_query_url())
         data = json.load(json_obj)
+        info = {'city': data['name'],
+                'country': data['sys']['country'],
+                'tmin': data['main']['temp_min'],
+                'tmax': data['main']['temp_max'],
+                'tavg': data['main']['temp'],
+                'wind_sp': data['wind']['speed'],
+                'sky': data['weather'][0]['main']
+                }
         self.stdout.write(
-            """Weather in %s - %s
-            min temp: %s F
-            max temp: %s F
-            average temp: %s F
-            wind speed: %s meters per second
-            sky: %s
-            """
-            % (data['name'],
-               data['sys']['country'],
-               data['main']['temp_min'],
-               data['main']['temp_max'],
-               data['main']['temp'],
-               data['wind']['speed'],
-               data['weather'][0]['main']
-               )
-        )
+            """Weather in %(city)s - %(country)s
+            min temp: %(tmin)s F
+            max temp: %(tmax)s F
+            average temp: %(tavg)s F
+            wind speed: %(wind_sp)s meters per second
+            sky: %(sky)s
+            """ % info
+            )

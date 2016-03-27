@@ -1,5 +1,5 @@
 from django.contrib import admin
-from education.models import Document, People
+from education.models import Document, Person
 
 
 class DocRelation(admin.StackedInline):
@@ -15,5 +15,4 @@ class DocRelation(admin.StackedInline):
 class PeopleAdmin(admin.ModelAdmin):
     inlines = [DocRelation]
 
-admin.site.register(People, PeopleAdmin)
-
+admin.site.register(Person, PeopleAdmin)

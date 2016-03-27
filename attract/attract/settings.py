@@ -27,6 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# External string constants
+
+GMAIL_IMAP = 'imap.gmail.com'
+RFC = '(RFC822)'        # https://www.w3.org/Protocols/rfc822/
+API_KEY = '1c73822d0b56a00dec472f069e960a8d'
+API_URL = 'http://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s'
 
 # Application definition
 
